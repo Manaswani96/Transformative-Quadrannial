@@ -3,11 +3,10 @@
     <head>
         <Title>Transformative Quadrenial</Title>
         <style>
-            *{
-                margin: 0;
+          *{
+            margin: 0;
             }
             header{
-                background-color: #364958;
             }
             .toplogos{
                 display: flex;
@@ -59,11 +58,15 @@
 
     }
     .video {
-            position: absolute;
-            z-index: -1;
+    position:absolute;
+    z-index:-1;
+    top:30;
+    width:100%; 
+    height:120%;
+    object-fit: cover;
     }
     div.scroll-container {
-        background-color: #364958;
+        background: linear-gradient(#08001f,#30197d);
         overflow: auto;
         white-space: nowrap;
         padding: 10px;
@@ -72,33 +75,80 @@
     div.scroll-container img {
         padding: 10px;
     }
-        </style>
+    .hero{
+            width:100%;
+            min-height:20vh;
+            color:#fff;
+            position:relative;
+        .container{
+            width:450px;
+            height:100px;
+            position:absolute;
+            top:50%;
+            left:50%;
+            transform:translate(-50%,-50%);
+        }
+        .clock{
+            width:100%;
+            height: 100%;
+            background: rgba(235,0,255,0.11);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(40px);
+        }
+        .clock span{
+                font-size:80px;
+                width:110px;
+                display:inline-block;
+                text-align: center;
+                position: relative;
+            }
+            .clock span::after{
+            font-size:16px;
+            position : absolute;
+            bottom:-5px;
+            left:50%;
+            transform:translate(-50%);          
+         }
+        #hrs::after{
+            content:'HOURS';
+        }
+        #min::after{
+            content:'MINUTES';
+         }
+         #sec::after{
+            content:'SECONDS';
+         }
+  </style>
     </head>
-    <body style="background-color:#364958">
-        <header  style="margin-bottom: 15px;">
+    <body style="background: linear-gradient(45deg,#08001f,#30197d);"class="body">
+        <div style="margin-bottom: 30px;">
+        <header  style="margin-bottom: 20px;">
             <p style="text-align: center;color:yellow; font-size:50px;font-family: cursive; ">Welcome to Transformative Quadrenial</p>
             <div class="slogan">
-            <p align="center" style="color: white;font-size: 15px; margin-left: 200px;">Transform Your BTech Journey with Us!</p>
-            <p align="center" style="color: white; margin-left: 300px;">From Freshman to Professional: A 4-Year Evolution.</p>
+            <p align="center" style="color: white;font-size: 23px; margin-left: 170px;">Transform Your BTech Journey with Us!</p>
+            <p align="center" style="color: white; margin-left: 80px;font-size: 23px;">From Freshman to Professional: A 4-Year Evolution.</p>
             </div>
         </header>
         </div>
-        <div class="video">
-            <video autoplay muted loop style="margin: 10px; height: 700px; margin-top: 0px;">
-                <source src="Space.mp4" type="video/mp4">
+        <div>
+            <video autoplay muted loop class="video">
+                <source src="Transformation.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
         <div class="toplogos">
-            <div class="top"> <a href="pink.html"><img src="carrer_pathways.jpg" style="height: 150px ; width: 150px; margin-right: 15px; border:5px solid black; "></a></div>
+            <div class="top"> <a htef=""><img src="carrer_pathways.jpg" style="height: 150px ; width: 150px; margin-right: 15px; border:5px solid black; "></a></div>
             <div class="top"><a href="gctafs.html" ><img src="call_action_for_students.jpg" style="height: 150px ; width: 150px; margin-left: 15px; border:5px solid black; "></a></div>
         </div>
         <div class="centerportion"> 
         <div>
-        <div> <a href="rrrr.html"><img src="emphasize_practical_knowledge.jpg" style="height: 150px ; width: 150px; margin-bottom: 15px; border:5px solid black; "> </div>
+        <div><img src="emphasize_practical_knowledge.jpg" style="height: 150px ; width: 150px; margin-bottom: 15px; border:5px solid black; "> </div>
         <div> <img src="inclusive_design.jpg" style="height: 150px ; width: 150px; margin-top: 15px; border:5px solid black; "></div>
         </div>
-        <div class="center"> <img src="weblogo1.jpg" style="height: 350px ; width: 350px; margin:5px; border:5px solid black; "></div>
+        <div class="center"><a href="Transformative_Quadrannial.html"><img src="weblogo1.jpg" style="height: 350px ; width: 350px; margin:5px; border:5px solid black; "></a></div>
         <div class="rightmiddle">
         <div><a href="Pindex1.html"><img src="industry_experts_insights.jpg" style="height: 150px ; width: 150px; margin-bottom: 15px; border:5px solid black; "></a></div>
         <div><img src="integration_with_sdg.jpg" style="height: 150px ; width: 150px; margin-top: 15px; border:5px solid black; "></div>
@@ -108,6 +158,30 @@
         <div class="down"><a href="GJMT.html"> <img src="job_market_trends.jpg" style="height: 150px ; width: 150px;margin-right: 15px; border:5px solid black; "></a></div>
         <div class="down"><a href="PIndex2.html"><img src="year_wise_plans.jpg" style="height: 150px ; width: 150px; margin-left: 15px; border:5px solid black; "></a></div>
         </div>
+        <div>
+            <div class="hero">
+                <div class="container">
+                    <div class="clock">
+                        <span id="hrs">00</span>
+                        <span>:</span>
+                        <span id="min">00</span>
+                        <span>:</span>
+                        <span id="sec">00</span>
+                    </div>
+                </div>
+            </div>
+            <script>
+                let hrs = document.getElementById("hrs");
+                let min = document.getElementById("min");
+                let sec = document.getElementById("sec");
+                setInterval(()=>{
+                let currentTime = new Date();
+                hrs.innerHTML = currentTime.getHours();
+                min.innerHTML = currentTime.getMinutes();
+                sec.innerHTML = currentTime.getSeconds();
+                },1000)
+            </script>
+            </div>
         <h1  align="center" style="color:greenyellow; padding: 15px; font-size: 45px;"><b>What can you expect from this student friendly platform ?</b></h1>
         <div class="info" style="border : 2px solid black; margin:5px ; border-radius:15px; background-color: #FFFDD0;">
         <h2  align="center" style="background-color:#FDFD96;" >Carrer Pathways</h2>
