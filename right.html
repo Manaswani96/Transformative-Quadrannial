@@ -1,17 +1,74 @@
-<!DOCTYPE html>
+\<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Image Outside Box</title>
     <style>
+        
         body {
-    background: url('baground_image.jpg') no-repeat center center fixed;
-    background-size: cover;
-}
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('https://imgv3.fotor.com/images/share/Free-pink-gradient-aesthetic-background-from-Fotor.jpg');
+            background-size: cover;
+        }
+
+        
+        .box-container {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            background: linear-gradient(45deg,#FFB6C1,#d258f1 );
+            padding: 20px;
+            border-radius: 15px; 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 80%; 
+            height: 400px; 
+            position: relative;
+            overflow: hidden;
+        }
+
+        
+       
+
+        img {
+            border-radius: 15px; 
+            height: 300px; 
+            width: 300px; 
+            object-fit: cover;
+        }
+
+        
+        .text {
+            font-size: 20px;
+            font-family: Arial, sans-serif;
+            color: #16080a;
+            margin-left: 20px; /* Space between image and text */
+        }
     </style>
 </head>
-<body >
-    
+<body>
+
+    <div class="box-container">
+        <div>
+            <img src="https://img.freepik.com/premium-photo/anime-girl-working-laptop-cozy-home-office_1121478-6230.jpg" alt="Anime Girl">
+        </div>
+        <div class="text">
+            <p><strong>Key Takeaways for B.Tech Students:</strong><br><br>
+                
+
+              <i>  <strong>Success Isn't About the Best University:</strong> Many successful entrepreneurs came from respected but not globally famous institutions. Success relies more on dedication and vision than the prestige of your alma mater.<br>
+                
+              <strong> Real-World Experience Over Degrees:</strong> Practical experience, building skills, and solving market problems often lead to success more than relying solely on degrees.<br>
+                
+            <strong>Passion Drives Innovation:</strong> Hard work, innovation, and risk-taking are often more important than formal education. Passionate students can turn ideas into successful businesses, regardless of where they studied.<br>
+                
+        <strong> Persistence Leads to Success:</strong> Overcoming challenges through persistence is key. These entrepreneurs prove that resilience is often the difference between failure and greatness.</p>
+            </i>  </div>
+    </div>
+
 </body>
 </html>
