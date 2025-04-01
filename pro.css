@@ -1,0 +1,128 @@
+ body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        h1 {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            margin: 0;
+            font-size: 2em;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px 20px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #1a1f24;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto;
+            width: 500px;
+            border-radius: 10px;
+        }
+
+
+        
+
+        .content-box {
+            background-color: #e0f7fa;
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            width: 80%;
+            max-width: 900px;
+            color: #333;
+            line-height: 1.6;
+            font-size: 1.1em;
+            position: right;
+        }
+
+        .div{
+            background-color: #a7aaaa;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            width: 20%;
+            display: flex;
+            max-width: 900px;
+            color: #333;
+            line-height: 1.6;
+            font-size: 1.1em;
+            position: right;
+        }
+
+        }
+
+        .content-box h1 {
+            text-align: center;
+            color: #00796b;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .content-box p {
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        .content-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .quote {
+            font-style: italic;
+            color: #00796b;
+            padding-left: 20px;
+            border-left: 4px solid #00796b;
+            margin-bottom: 20px;
+        }
+
+        .content-box::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: linear-gradient(45deg, #00796b, #00acc1);
+            border-radius: 15px 15px 0 0;
+        }
+
+        .content-box::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 10px;
+            border-radius: 0 0 15px 15px;
+        }
+
+
