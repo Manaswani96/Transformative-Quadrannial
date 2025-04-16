@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Live Average Rating</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f8f9fa;
+      padding: 40px;
+    }
+
+    .form-container {
+      max-width: 500px;
+      margin: auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label, select, button {
+      display: block;
+      width: 100%;
+      margin-bottom: 15px;
+    }
+
+    select, button {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    #averageDisplay {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      color: #2ecc71;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Rate This Website</h2>
+    <form id="ratingForm">
+      <label for="rating">Give us a rating (1 to 5):</label>
+      <select id="rating" required>
+        <option value="">-- Select Rating --</option>
+        <option value="5">⭐️⭐️⭐️⭐️⭐️</option>
+        <option value="4">⭐️⭐️⭐️⭐️</option>
+        <option value="3">⭐️⭐️⭐️</option>
+        <option value="2">⭐️⭐️</option>
+        <option value="1">⭐️</option>
+      </select>
+      <button type="submit">Submit</button>
+    </form>
+
+    <div id="averageDisplay">Average Rating: Not rated yet</div>
+  </div>
+
+  <script>
+    const ratingForm = document.getElementById('ratingForm');
+    const averageDisplay = document.getElementById('averageDisplay');
+
+    function updateAverage() {
+      const ratings = JSON.parse(localStorage.getItem('ratings') || '[]');
+      if (ratings.length === 0) {
+        averageDisplay.innerText = 'Average Rating: Not rated yet';
+        return;
+      }
+      const total = ratings.reduce((sum, val) => sum + val, 0);
+      const average = (total / ratings.length).toFixed(2);
+      averageDisplay.innerText = `Average Rating: ${average} ⭐️ (from ${ratings.length} rating${ratings.length > 1 ? 's' : ''})`;
+    }
+
+    ratingForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const selectedRating = parseInt(document.getElementById('rating').value);
+      if (!selectedRating) return;
+
+      const ratings = JSON.parse(localStorage.getItem('ratings') || '[]');
+      ratings.push(selectedRating);
+      localStorage.setItem('ratings', JSON.stringify(ratings));
+      updateAverage();
+      ratingForm.reset();
+    });
+    updateAverage();
+  </script>
+
+</body>
+</html>
