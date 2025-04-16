@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Aesthetic To-Do List 💖</title>
+  <style>
+    * {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: #ffe6f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.todo-container {
+  background: #fff0f5;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(255, 192, 203, 0.5);
+  width: 400px;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 20px;
+  color: #d63384;
+}
+
+.input-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  padding: 10px;
+  border: 2px solid #ffb6c1;
+  border-radius: 10px;
+  outline: none;
+}
+
+button {
+  padding: 10px;
+  background: #ff69b4;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #ff85c1;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  padding: 10px;
+  background: #fff;
+  margin-bottom: 15px;
+  border-radius: 15px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+li.completed {
+  text-decoration: line-through;
+  color: #aaa;
+  background-color: #fce4ec;
+}
+
+.task-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid #ffccd5;
+  box-shadow: 0 2px 6px rgba(255, 182, 193, 0.3);
+}
+
+  </style>>
+</head>
+<body>
+  <div class="todo-container">
+    <h1> My To-Do List 🪄</h1>
+
+    <div class="input-section">
+      <input type="text" id="taskInput" placeholder="What do you need to do? ">
+      <input type="text" id="imgInput" placeholder="Image URL (optional) 🖼️">
+      <button onclick="addTask()">Add</button>
+    </div>
+
+    <ul id="taskList"></ul>
+  </div>
+
+  <script>
+    function addTask() {
+  const taskInput = document.getElementById("taskInput");
+  const imgInput = document.getElementById("imgInput");
+  const taskText = taskInput.value.trim();
+  const imageURL = imgInput.value.trim();
+
+  if (taskText !== "") {
+    const li = document.createElement("li");
+
+    const textNode = document.createElement("span");
+    textNode.textContent = taskText;
+
+    li.appendChild(textNode);
+
+    if (imageURL !== "") {
+      const img = document.createElement("img");
+      img.src = imageURL;
+      img.alt = "task image";
+      img.className = "task-image";
+      li.appendChild(img);
+    }
+
+    li.addEventListener("click", function () {
+      li.classList.toggle("completed");
+    });
+
+    document.getElementById("taskList").appendChild(li);
+    taskInput.value = "";
+    imgInput.value = "";
+  }
+}
+
+  </script>
+</body>
+</html>

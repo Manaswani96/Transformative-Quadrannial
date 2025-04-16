@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Career Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f8ff;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    .quiz-container {
+      max-width: 700px;
+      margin: 0 auto;
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .question {
+      margin-bottom: 20px;
+    }
+    .question h3 {
+      margin-bottom: 10px;
+    }
+    .options label {
+      display: block;
+      margin: 8px 0;
+      cursor: pointer;
+    }
+    button {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+    #result {
+      margin-top: 20px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 18px;
+      color: #2e8b57;
+    }
+  </style>
+</head>
+<body>
+    <h1>Smart Career Quiz</h1>
+    <div class="quiz-container">
+      <form id="careerQuiz">
+        <div class="question">
+          <h3>1. Which activity do you enjoy the most?</h3>
+          <div class="options">
+            <label><input type="radio" name="q1" value="ai"> Solving puzzles or optimizing systems</label>
+            <label><input type="radio" name="q1" value="web"> Designing websites or front-end layouts</label>
+            <label><input type="radio" name="q1" value="cyber"> Breaking into systems ethically</label>
+            <label><input type="radio" name="q1" value="robotics"> Building and programming machines</label>
+          </div>
+        </div>
+  
+        <div class="question">
+          <h3>2. Which project would excite you the most?</h3>
+          <div class="options">
+            <label><input type="radio" name="q2" value="web"> A responsive portfolio site</label>
+            <label><input type="radio" name="q2" value="ai"> An AI chatbot for mental health</label>
+            <label><input type="radio" name="q2" value="cyber"> A secure login system</label>
+            <label><input type="radio" name="q2" value="robotics"> A home automation bot</label>
+          </div>
+        </div>
+  
+        <div class="question">
+          <h3>3. What do you enjoy learning about?</h3>
+          <div class="options">
+            <label><input type="radio" name="q3" value="robotics"> Sensors and hardware control</label>
+            <label><input type="radio" name="q3" value="cyber"> Encryption and network security</label>
+            <label><input type="radio" name="q3" value="ai"> Machine learning models</label>
+            <label><input type="radio" name="q3" value="web"> UI/UX principles</label>
+          </div>
+        </div>
+        <div class="question">
+          <h3>4. How do you prefer to solve a complex problem?</h3>
+          <div class="options">
+            <label><input type="radio" name="q4" value="ai"> Using data and algorithms to automate the process</label>
+            <label><input type="radio" name="q4" value="web"> Breaking it into smaller, manageable design tasks</label>
+            <label><input type="radio" name="q4" value="cyber"> Finding vulnerabilities and exploiting weaknesses</label>
+            <label><input type="radio" name="q4" value="robotics"> Building physical prototypes to test solutions</label>
+          </div>
+        </div>
+        <div class="question">
+          <h3>5. What technology excites you the most right now?</h3>
+          <div class="options">
+            <label><input type="radio" name="q5" value="ai"> Artificial Intelligence and its applications in various fields</label>
+            <label><input type="radio" name="q5" value="web"> Progressive Web Apps and responsive designs</label>
+            <label><input type="radio" name="q5" value="cyber"> Ethical hacking and threat intelligence</label>
+            <label><input type="radio" name="q5" value="robotics"> Autonomous robots and drone technologies</label>
+          </div>
+        </div>
+        <div class="question">
+          <h3>6. How comfortable are you with handling large datasets?</h3>
+          <div class="options">
+            <label><input type="radio" name="q6" value="ai"> Very comfortable; I enjoy cleaning, processing, and analyzing data</label>
+            <label><input type="radio" name="q6" value="web"> I prefer working with front-end data and visuals, not too much back-end</label>
+            <label><input type="radio" name="q6" value="cyber"> I'm not interested in handling datasets; security is my focus</label>
+            <label><input type="radio" name="q6" value="robotics"> I handle data related to sensors and real-time processing</label>
+          </div>
+        </div>
+        <div class="question">
+          <h3>7. How do you approach debugging code?</h3>
+          <div class="options">
+            <label><input type="radio" name="q7" value="ai"> I run tests, analyze the algorithm, and check the model's performance</label>
+            <label><input type="radio" name="q7" value="web"> I focus on the front-end UI and use browser debugging tools</label>
+            <label><input type="radio" name="q7" value="cyber"> I use penetration testing tools and network analyzers</label>
+            <label><input type="radio" name="q7" value="robotics"> I use both simulation and real-world debugging with sensors</label>
+          </div>
+        </div>
+  
+        <button type="button" onclick="calculateCareer()">Submit</button>
+      </form>
+      <div id="result"></div>
+    </div>
+  
+    <script>
+      function calculateCareer() {
+        const answers = [
+          document.querySelector('input[name="q1"]:checked'),
+          document.querySelector('input[name="q2"]:checked'),
+          document.querySelector('input[name="q3"]:checked'),
+          document.querySelector('input[name="q4"]:checked'),
+          document.querySelector('input[name="q5"]:checked'),
+          document.querySelector('input[name="q6"]:checked'),
+          document.querySelector('input[name="q7"]:checked')
+        ];
+  
+        if (answers.includes(null)) {
+          document.getElementById("result").innerText = "Please answer all questions.";
+          return;
+        }
+  
+        const counts = {
+          ai: 0,
+          web: 0,
+          cyber: 0,
+          robotics: 0
+        };
+  
+        answers.forEach(ans => counts[ans.value]++);
+  
+        const bestFit = Object.keys(counts).reduce((a, b) => counts[a] > counts[b] ? a : b);
+  
+        let resultText = "";
+        switch(bestFit) {
+          case 'ai':
+            resultText = "You are best suited for a career in Artificial Intelligence & Machine Learning!";
+            break;
+          case 'web':
+            resultText = "You are best suited for a career in Web Development & UI/UX Design!";
+            break;
+          case 'cyber':
+            resultText = "You are best suited for a career in Cybersecurity!";
+            break;
+          case 'robotics':
+            resultText = "You are best suited for a career in Robotics & Embedded Systems!";
+            break;
+        }
+  
+        document.getElementById("result").innerText = resultText;
+      }
+    </script>
+  </body>
+
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CSE Resource Toolkit</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #3a8dff, #7a57d1);
+
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    .toolkit-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 20px;
+      justify-items: center;
+      margin-top: 30px;
+    }
+    .tool {
+      background: white;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 200px;
+      width: 150px;
+      position: relative;
+    }
+    .tool:hover {
+      transform: scale(1.05);
+      background-color: #e8f4ff;
+    }
+    .tool img {
+  transition: transform 0.3s ease;
+}
+
+    .tool img {
+      width: 50px;
+      height: 50px;
+      margin-bottom: 20px;
+    }
+    .tool h3 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: bold;
+      position: absolute;
+      bottom: 15px;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .modal-content {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 600px;
+      text-align: left;
+    }
+    .close-btn {
+      float: right;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    .header {
+        background-color:  #6d8dd9;
+    text-align: center;
+    padding: 20px; 
+    font-size: 36px; 
+    font-weight: bold;
+    color: #2c3e50; 
+    margin: 0px;
+    
+    }
+    
+  </style>
+</head>
+<body>
+   
+        <h1 class="header">CSE Resource Toolkit</h1>
+    
+  <div class="toolkit-container">
+    <div class="tool" onclick="openModal('resume')">
+      <img src="https://img.icons8.com/ios/452/resume.png" alt="Resume Icon" />
+      <h3>Resume Templates</h3>
+    </div>
+    <div class="tool" onclick="openModal('github')">
+      <img src="https://img.icons8.com/ios/452/github.png" alt="GitHub Icon" />
+      <h3>GitHub Projects</h3>
+    </div>
+    <div class="tool" onclick="openModal('leetcode')">
+      <img src="https://img.icons8.com/ios/452/brain.png" alt="LeetCode Icon" />
+      <h3>LeetCode by Creators</h3>
+    </div>
+    <div class="tool" onclick="openModal('interview')">
+      <img src="https://img.icons8.com/ios/452/interview.png" alt="Interview Icon" />
+      <h3>Interview Prep Kit</h3>
+    </div>
+    <div class="tool" onclick="openModal('linkedin')">
+      <img src="https://img.icons8.com/ios/452/linkedin.png" alt="LinkedIn Icon" />
+      <h3>LinkedIn Hacks</h3>
+    </div>
+    <div class="tool" onclick="openModal('pdfs')">
+      <img src="https://img.icons8.com/ios/452/pdf.png" alt="PDF Icon" />
+      <h3>CSE PDFs by Us</h3>
+    </div>
+    <div class="tool" onclick="openModal('time')">
+      <img src="https://img.icons8.com/ios/452/clock.png" alt="Time Management Icon" />
+      <h3>Time Management</h3>
+    </div>
+  </div>
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById("modal");
+    const modalBody = document.getElementById("modal-body");
+
+    function openModal(type) {
+      let content = "";
+      switch(type) {
+        case 'resume':
+          content = `
+            <h2>Resume Templates</h2>
+            <ul>
+              <li><a href="https://www.overleaf.com/latex/templates/tagged/resume" target="_blank">LaTeX Templates</a></li>
+              <li><a href="https://docs.google.com/document/u/0/" target="_blank">Google Docs Resume</a></li>
+              <li><a href="https://www.canva.com/resumes/" target="_blank">Canva Designs</a></li>
+            </ul>`;
+          break;
+        case 'github':
+          content = `
+            <h2>GitHub Projects</h2>
+            <ul>
+              <li><a href="https://github.com/topics/machine-learning-project" target="_blank">ML Projects</a></li>
+              <li><a href="https://github.com/topics/web-development" target="_blank">Web Dev</a></li>
+              <li><a href="https://github.com/topics/quantum-computing" target="_blank">Quantum Computing</a></li>
+            </ul>`;
+          break;
+        case 'leetcode':
+          content = `
+            <h2>LeetCode Questions by Creators</h2>
+            <ul>
+              <li><a href="#" target="_blank">Top 50 Patterns PDF (by Team)</a></li>
+              <li><a href="#" target="_blank">LeetCode Playlist</a></li>
+              <li><a href="#" target="_blank">System Design Sheet</a></li>
+            </ul>`;
+          break;
+        case 'interview':
+          content = `
+            <h2>Interview Prep Kit</h2>
+            <ul>
+              <li><a href="#" target="_blank">HR Questions</a></li>
+              <li><a href="#" target="_blank">DSA Must-Do Sheet</a></li>
+              <li><a href="#" target="_blank">Behavioral Tips (PDF)</a></li>
+            </ul>`;
+          break;
+        case 'linkedin':
+          content = `
+            <h2>LinkedIn Hacks</h2>
+            <ul>
+              <li>Use headline keywords like "Python | Web Dev | AI"</li>
+              <li>Add GitHub & portfolio in 'Featured'</li>
+              <li>Write progress updates in posts!</li>
+            </ul>`;
+          break;
+        case 'pdfs':
+          content = `
+            <h2>CSE PDFs by Us</h2>
+            <ul>
+              <li><a href="https://wiki.archlinux.org/title/Main_page" target="_blank">Semester 1 Notes</a></li>
+              <li><a href="#" target="_blank">Operating Systems Explained</a></li>
+              <li><a href="https://wiki.archlinux.org/title/Main_page" target="_blank">Mini Project Guides</a></li>
+              <li><a href="https://wiki.archlinux.org/title/Main_page" target="_blank">Linux</a></li>
+            </ul>`;
+          break;
+        case 'time':
+          content = `
+            <h2>Time Management Tips</h2>
+            <ul>
+              <li>Use Pomodoro (25min work / 5min break)</li>
+              <li>Plan weekly with Notion/Google Calendar</li>
+              <li>Track habits using Habitica</li>
+              <li>Track habits using Habitica</li>
+            </ul>`;
+          break;
+      }
+      modalBody.innerHTML = content;
+      modal.style.display = "flex";
+    }
+
+    function closeModal() {
+      modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        closeModal();
+      }
+    }
+  </script>
+</body>
+</html>
