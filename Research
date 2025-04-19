@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Practice </title>
+<style>
+ * { box-sizing: border-box; margin: 0; padding: 0; }
+body{
+font-size:25px;
+background-image: url('https://i.pinimg.com/736x/96/6d/d0/966dd094f8f12ae1286c75953ae2c964.jpg');
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-size:100%;
+
+}
+ h1 { margin-bottom: 20px; color: #333; }
+    .container {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+        justify-content: center;
+    }
+    .box {
+        background-color: #fff;
+        padding: 15px 25px;
+        border-radius: 20px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        width: 300px;
+        transition: all 0.3s ease;
+    }
+    .box:hover { 
+        background-color: #f0f9ff;
+        transform: translateY(-5px);
+    }
+    .line {
+        width: 5px;
+        height: 40px;
+        background-color: #7aa2f7;
+        margin: 5px 0;
+    }
+.inspiration {
+  font-family: 'Poppins', sans-serif;
+font-weight: bold;
+  text-align: center;
+    padding: 10px;
+  border-radius: 20px;
+  margin: 20px;
+  }
+.curiosity {
+    font-family: 'Poppins', sans-serif;
+            padding: 20px;
+    border-radius: 15px;
+           width: fit-content;
+color:#1e3a8a ;
+    }
+
+}
+</style>
+</head>
+<body>
+<header style="background-color: #102a42;">
+        <p style="color: white; text-align: center; padding: 30px; font-size: 50px;"> Research </p>
+</header>
+<p> <img src="https://i.pinimg.com/736x/ac/24/c6/ac24c6929fc9c25f01ebb4bad932ca72.jpg" style="border-radius:20px;float:left;width:500px;height:450px;">
+<hr>
+Start Your Research Journey Now!!</p>
+<div class="inspiration">
+<h1> Inspiration zone!! </h1>
+<p> Research is not about answering better, it about better questions!!</p>
+<p> Every breakthrough starts with curiosity.</p>
+<p>You don’t need to know everything. You just need to start.<p>
+
+</div>
+<h2> Explore how you can reasearch anything effectively!! </h2>
+
+
+ <h1>Research Process Flowchart</h1>
+    <div class="container">
+        <div class="box" onclick="showInfo('Identify a research problem that intrigues you.')">1. Identify Research Problem</div>
+        <div class="line"></div>
+
+        <div class="box" onclick="showInfo('Review existing literature to understand what is already known.')">2. Literature Review</div>
+        <div class="line"></div>
+
+        <div class="box" onclick="showInfo('Create a hypothesis or research question based on your understanding.')">3. Formulate Hypothesis</div>
+        <div class="line"></div>
+
+        <div class="box" onclick="showInfo('Design experiments or methodologies to test your hypothesis.')">4. Design Experiment</div>
+        <div class="line"></div>
+
+        <div class="box" onclick="showInfo('Gather data through experiments, surveys, or simulations.')">5. Collect Data</div>
+        <div class="line"></div>
+
+        <div class="box" onclick="showInfo('Analyze data to uncover patterns or insights.')">6. Analyze Results</div>
+        <div class="line"></div>
+
+        <div class="box" onclick="showInfo('Draw conclusions and evaluate if your hypothesis was supported.')">7. Draw Conclusions</div>
+        <div class="line"></div>
+
+        <div class="box" onclick="showInfo('Publish findings and reflect on future research possibilities.')">8. Publish & Reflect</div>
+    </div>
+
+<script>
+function showInfo(message) {
+        alert(message);
+    }
+</script>
+</body>
+</html>
