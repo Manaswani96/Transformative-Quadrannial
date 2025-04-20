@@ -3,17 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pomodoro Timer</title>
+    <link rel="stylesheet" href="Pstyle.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <pre style="margin:80px; font-size: 20px;">
-    Hack: Work in 25-minute sprints with 5-minute breaks. 
-    After 4 cycles, take a longer 15–30 minute break.
-    How to Use?
-    Set a timer for 25 minutes, focus on one task.
-    Take a 5-minute break.
-    Repeat 4 times, then take a longer break.
-    Helps prevent burnout & improves concentration
-    </pre>
+
+    <div class="container">
+    <h1 class="title">Pomodoro Timer</h1>
+    <hr>
+
+    <p class="timer" id="timer">25:00</p>
+    
+    <div class="button-wrapper">
+        <button id="start">Start</button>
+        <button id="stop">Stop</button>
+        <button id="reset">Reset</button>
+    </div>
+</div>
+
+    <script src="Papp.js"></script>
 </body>
 </html>

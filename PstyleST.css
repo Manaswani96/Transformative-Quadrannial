@@ -1,0 +1,246 @@
+.poppins-thin {
+    font-family: "Poppins", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+  }
+  
+  .poppins-extralight {
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+  }
+  
+  .poppins-light {
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  .poppins-regular {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .poppins-medium {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+  }
+  
+  .poppins-semibold {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+  }
+  
+  .poppins-bold {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  .poppins-extrabold {
+    font-family: "Poppins", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+  }
+  
+  .poppins-black {
+    font-family: "Poppins", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+  }
+  
+  .poppins-thin-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 100;
+    font-style: italic;
+  }
+  
+  .poppins-extralight-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    font-style: italic;
+  }
+  
+  .poppins-light-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: italic;
+  }
+  
+  .poppins-regular-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+  }
+  
+  .poppins-medium-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: italic;
+  }
+  
+  .poppins-semibold-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: italic;
+  }
+  
+  .poppins-bold-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+  }
+  
+  .poppins-extrabold-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 800;
+    font-style: italic;
+  }
+  
+  .poppins-black-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 900;
+    font-style: italic;
+  }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: "Poppins";
+}
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    background-color: #21D4FD;
+    background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+    background-attachment: fixed;
+    background-size: cover;
+
+}
+
+.container {
+    text-align: center;
+}
+hr{
+  width:100%;
+  background-color: black;
+  height:2px;
+  border:none;
+}
+
+.grid-layout1 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6%;
+    margin: 3%;
+}
+
+
+.box {
+    background-color: rgba(255,255,255,0.20);;
+    color: black;
+    padding: 10% 1% 10% 1%;
+    margin: 5%;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+}
+ a{
+  text-decoration: none;
+  color: inherit;
+  
+}
+#box1{
+  border:none;
+    /* color:white; */
+    cursor: pointer;
+    transition:0.2s ease-in-out;
+}
+
+#box1:hover{
+  transform:translateY(-10px);
+}
+#box2{
+  border:none;
+    /* color:white; */
+    cursor: pointer;
+    transition:0.2s ease-in-out;
+}
+#box2:hover{
+  transform:translateY(-10px);
+}
+#box3{
+  border:none;
+    /* color:white; */
+    cursor: pointer;
+    transition:0.2s ease-in-out;
+}
+#box3:hover{
+  transform:translateY(-10px);
+}
+#box4{
+  border:none;
+    /* color:white; */
+    cursor: pointer;
+    transition:0.2s ease-in-out;
+}
+#box4:hover{
+  transform:translateY(-10px);
+}
+#box5{
+  border:none;
+    /* color:white; */
+    cursor: pointer;
+    transition:0.2s ease-in-out;
+}
+#box5:hover{
+  transform:translateY(-10px);
+}
+#box6{
+  border:none;
+    /* color:white; */
+    cursor: pointer;
+    transition:0.2s ease-in-out;
+}
+#box6:hover{
+  transform:translateY(-10px);
+}
+#box7{
+  border:none;
+    /* color:white; */
+    cursor: pointer;
+    transition:0.2s ease-in-out;
+}
+#box7:hover{
+  transform:translateY(-10px);
+}
+#box8{
+  border:none;
+    /* color:white; */
+    cursor: pointer;
+    transition:0.2s ease-in-out;
+}
+#box8:hover{
+  transform:translateY(-10px);
+}
+#box9{
+  border:none;
+    /* color:white; */
+    cursor: pointer;
+    transition:0.2s ease-in-out;
+}
+#box9:hover{
+  transform:translateY(-10px);
+}
+#Title{
+margin: 1%;
+padding: 1%;
+}
