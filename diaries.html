@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Success Diaries</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #f4f6f8;
+      color: #333;
+    }
+    header {
+      background: linear-gradient(135deg, #4f46e5, #3b82f6);
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: white;
+      border-radius: 1rem;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .card-content {
+      padding: 1.2rem;
+    }
+    .card-content h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1.25rem;
+      color: #111827;
+    }
+    .card-content p {
+      font-size: 0.95rem;
+      color: #4b5563;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: #e5e7eb;
+      color: #6b7280;
+      font-size: 0.9rem;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-box {
+      background: white;
+      border-radius: 1rem;
+      padding: 2rem;
+      max-width: 750px;
+      width: 95%;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      position: relative;
+      text-align: center;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .modal-box img {
+      width: 100%;
+      max-height: 350px;
+      object-fit: cover;
+      border-radius: 0.75rem;
+      margin-bottom: 1rem;
+      cursor: pointer;
+    }
+    .modal-box h2 {
+      margin-top: 0;
+    }
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Success Diaries</h1>
+    <p>Inspiring journeys of real people</p>
+  </header>
+  <main class="container" id="diary-container">
+    <!-- Cards will be added here -->
+  </main>
+  <div class="modal" id="storyModal">
+    <div class="modal-box">
+      <span class="modal-close" id="modalClose">&times;</span>
+      <img id="modalImage" src="" alt="" onclick="window.open(this.src, '_blank')" />
+      <h2 id="modalName"></h2>
+      <p id="modalStory"></p>
+    </div>
+  </div>
+  <footer>
+    &copy; 2025 Success Diaries. All rights reserved.
+  </footer>
+  <script>
+    const successStories = [
+      {
+        name: "Tanmay Bakshi",
+        image: "https://www.cetpainfotech.com/wp-content/uploads/2018/10/Tanmay-Bakshi-e1539167788760.jpg.webp",
+        story: "anmay Bakshi is widely recognized for his groundbreaking work in artificial intelligence (AI), machine learning (ML), and data science, with a strong emphasis on AI for social good. Despite his young age, he has built an impressive portfolio as a developer, researcher, author, and public speaker. Here's an overview of his key work and accomplishments:"
+      },
+      {
+        name: "RIYA KARUMANCHI",
+        image: "https://diversityq-production.s3.amazonaws.com/uploads/2021/09/Riya-Karumanchi-WIT-Europe-e1631528635906.jpg",
+        story: "Riya Karumanchi is an award-winning entrepreneur, STEM leader, CEO—and just 16 years old. The Canadian high school student is the founder of Smart Cane, which is a cane equipped with a GPS and proximity sensors to help the visually impaired."
+      },
+      {
+        name: "Harshwardhan Zala",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlXMDFagvR5nBhwfQmJbnYKUdNvvPJarGhzA&s",
+        story: "At the age of 10, he worked on his first invention- a universal wireless remote control for home appliances. At 14 years, he signed a Rs 5 crore deal with the Gujarat Government for the drone he designed. Aerobotics7 has more than 300 clients, has delivered 317 projects, and has completed roughly 700 projects in total."
+      },
+
+      {
+        name: "SAMIRA MEHTA",
+        image: "https://i.ytimg.com/vi/KfSa8SQXyIw/maxresdefault.jpg",
+        story: "Mehta is from Santa Clara, California. Her father is an engineer. She began coding when she was 6 years old with her father as her teacher. She created the board game CoderBunnyz, with the help of her little brother, to teach other children how to code."
+      },
+
+      {
+        name: "Brittany Wenger",
+        image: "https://ideas.ted.com/wp-content/uploads/sites/3/2013/12/wengerblog-ted-compreview.jpg",
+        story: "Wenger set out to find that better way. By combining medical research and a passion for computer science, she created Cloud4Cancer. The cloud-based computer program helps doctors diagnose breast cancer."
+      }
+
+    ];
+
+    const container = document.getElementById('diary-container');
+    const modal = document.getElementById('storyModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalName = document.getElementById('modalName');
+    const modalStory = document.getElementById('modalStory');
+    const modalClose = document.getElementById('modalClose');
+
+    successStories.forEach(({name, image, story}) => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <img src="${image}" alt="${name}" />
+        <div class="card-content">
+          <h3>${name}</h3>
+          <p>${story.substring(0, 60)}...</p>
+        </div>
+      `;
+      card.addEventListener('click', () => {
+        modalImage.src = image;
+        modalImage.alt = name;
+        modalName.textContent = name;
+        modalStory.textContent = story;
+        modal.style.display = 'flex';
+      });
+      container.appendChild(card);
+    });
+
+    modalClose.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
