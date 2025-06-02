@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Meme Stress Buster</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #1e3a8a, #7c3aed, #db2777, #facc15);
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        .meme-card {
+            transition: transform 0.5s ease, box-shadow 0.3s ease;
+            transform: scale(0.95);
+        }
+        .meme-card.show {
+            transform: scale(1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        }
+        .mood-btn {
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+        .mood-btn:hover {
+            transform: scale(1.1) rotate(3deg);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .meme-img {
+            max-height: 400px;
+            object-fit: contain;
+            border-radius: 12px;
+        }
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #ffffff;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .filter-input {
+            transition: all 0.3s ease;
+        }
+        .filter-input:focus {
+            box-shadow: 0 0 10px rgba(236, 72, 153, 0.5);
+        }
+        @media (max-width: 640px) {
+            .meme-img {
+                max-height: 280px;
+            }
+            .mood-btn {
+                padding: 10px 16px;
+                font-size: 14px;
+            }
+            .text-4xl {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center p-6">
+    <div class="text-center mb-10">
+        <h1 class="text-4xl md:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-yellow-400 to-purple-500 animate-pulse">
+            College Meme Stress Buster
+        </h1>
+        <p class="text-lg md:text-2xl mt-3 opacity-90">Pick your college vibe or type it to get a meme!</p>
+    </div>
+
+    <div class="flex flex-col sm:flex-row gap-4 mb-8 w-full max-w-2xl">
+        <input id="mood-filter" type="text" placeholder="Filter moods..." class="filter-input p-3 rounded-lg bg-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-pink-500">
+        <button id="random-mood" class="mood-btn bg-gradient-to-r from-green-400 to-blue-500 text-white font-semibold py-3 px-6 rounded-lg shadow-md">
+            Random Mood
+        </button>
+    </div>
+
+    <div id="mood-buttons" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 max-w-6xl w-full">
+        <!-- Mood buttons will be dynamically added here -->
+    </div>
+
+    <div id="meme-display" class="mt-10 hidden flex-col items-center w-full max-w-2xl">
+        <h2 id="selected-mood" class="text-2xl md:text-3xl font-semibold mb-4"></h2>
+        <div id="loading-spinner" class="spinner hidden"></div>
+        <div id="meme-card" class="meme-card bg-white rounded-xl shadow-2xl p-6 hidden">
+            <img id="meme-image" class="meme-img" src="" alt="Meme">
+            <p id="meme-caption" class="text-gray-800 mt-3 text-center font-medium"></p>
+        </div>
+        <button id="next-meme" class="mt-6 px-6 py-2 bg-gradient-to-r from-green-400 to-blue-500 text-white rounded-full mood-btn font-semibold">
+            Next Meme
+        </button>
+    </div>
+
+    <script>
+        const moods = [
+            {
+                name: "Drowning in assignments",
+                memes: [
+                    { url: "https://i.imgflip.com/5m1z0s.jpg", caption: "When you have 3 assignments due at midnight..." },
+                    { url: "https://i.imgflip.com/4z3v2e.jpg", caption: "Me trying to finish all my assignments in one night" },
+                    { url: "https://i.imgflip.com/2fm6x.jpg", caption: "Assignments piling up like my regrets" }
+                ]
+            },
+            {
+                name: "Exams are killing me",
+                memes: [
+                    { url: "https://i.imgflip.com/1otk96.jpg", caption: "When you realize the exam is tomorrow" },
+                    { url: "https://i.imgflip.com/5z1z0s.jpg", caption: "Me after bombing the exam I didn't study for" },
+                    { url: "https://i.imgflip.com/3oe7tk.jpg", caption: "When the exam question isn't even in the syllabus" }
+                ]
+            },
+            {
+                name: "Broke college life",
+                memes: [
+                    { url: "https://i.imgflip.com/3oe7tk.jpg", caption: "When your bank account is as empty as your fridge" },
+                    { url: "https://i.imgflip.com/2fm6x.jpg", caption: "Me surviving on instant noodles again" },
+                    { url: "https://i.imgflip.com/1g8my4.jpg", caption: "When you check your balance and it's $0.69" }
+                ]
+            },
+            {
+                name: "Procrastination mode ON",
+                memes: [
+                    { url: "https://i.imgflip.com/1g8my4.jpg", caption: "I'll do it later... *never does it*" },
+                    { url: "https://i.imgflip.com/5m2z0s.jpg", caption: "When Netflix is more important than deadlines" },
+                    { url: "https://i.imgflip.com/4z3v2e.jpg", caption: "Procrastinating so hard I deserve a degree in it" }
+                ]
+            },
+            {
+                name: "Group project struggles",
+                memes: [
+                    { url: "https://i.imgflip.com/3si4.jpg", caption: "When you're the only one doing the group project" },
+                    { url: "https://i.imgflip.com/5z1z0s.jpg", caption: "Group project? More like solo project with extra names" },
+                    { url: "https://i.imgflip.com/2h3n5n.jpg", caption: "When your group mate submits Comic Sans slides" }
+                ]
+            },
+            {
+                name: "Caffeine is my bestie",
+                memes: [
+                    { url: "https://i.imgflip.com/2h3n5n.jpg", caption: "Me and coffee against the world" },
+                    { url: "https://i.imgflip.com/4z3v2e.jpg", caption: "When your blood is 90% caffeine" },
+                    { url: "https://i.imgflip.com/1otk96.jpg", caption: "Coffee: because sleep is for the weak" }
+                ]
+            },
+            {
+                name: "All-nighter vibes",
+                memes: [
+                    { url: "https://i.imgflip.com/5m1z0s.jpg", caption: "When it's 3 AM and you're still studying" },
+                    { url: "https://i.imgflip.com/3oe7tk.jpg", caption: "Me at 4 AM questioning my life choices" },
+                    { url: "https://i.imgflip.com/2fm6x.jpg", caption: "All-nighter? More like all-panic" }
+                ]
+            },
+            {
+                name: "Professor doesn't get it",
+                memes: [
+                    { url: "https://i.imgflip.com/1g8my4.jpg", caption: "When the prof says 'it's a simple concept'" },
+                    { url: "https://i.imgflip.com/5z1z0s.jpg", caption: "Me nodding while understanding nothing" },
+                    { url: "https://i.imgflip.com/3si4.jpg", caption: "When the prof's email is just 'see me'" }
+                ]
+            },
+            {
+                name: "Finally done with finals",
+                memes: [
+                    { url: "https://i.imgflip.com/2h3n5n.jpg", caption: "When you finish your last final and feel free" },
+                    { url: "https://i.imgflip.com/1otk96.jpg", caption: "Post-finals vibe: sleeping for a week" },
+                    { url: "https://i.imgflip.com/4z3v2e.jpg", caption: "When finals are over and you celebrate with pizza" }
+                ]
+            },
+            {
+                name: "Club event chaos",
+                memes: [
+                    { url: "https://i.imgflip.com/2fm6x.jpg", caption: "When you plan a club event but nobody shows up" },
+                    { url: "https://i.imgflip.com/5m1z0s.jpg", caption: "Me hyping the club event vs. the actual turnout" },
+                    { url: "https://i.imgflip.com/3oe7tk.jpg", caption: "When the club budget is $5 and a dream" }
+                ]
+            },
+            {
+                name: "Roommate drama",
+                memes: [
+                    { url: "https://i.imgflip.com/1g8my4.jpg", caption: "When your roommate eats your labeled food" },
+                    { url: "https://i.imgflip.com/2h3n5n.jpg", caption: "Me trying to sleep while my roommate parties" },
+                    { url: "https://i.imgflip.com/3si4.jpg", caption: "When you clean the dorm and they mess it up in 5 minutes" }
+                ]
+            },
+            {
+                name: "Crushing on campus",
+                memes: [
+                    { url: "https://i.imgflip.com/1otk96.jpg", caption: "When you see your campus crush but panic" },
+                    { url: "https://i.imgflip.com/4z3v2e.jpg", caption: "Me trying to look cool in front of my crush" },
+                    { url: "https://i.imgflip.com/5z1z0s.jpg", caption: "When you finally talk to them and forget how to speak" }
+                ]
+            }
+        ];
+
+        const moodButtonsDiv = document.getElementById('mood-buttons');
+        const memeDisplay = document.getElementById('meme-display');
+        const selectedMood = document.getElementById('selected-mood');
+        const memeImage = document.getElementById('meme-image');
+        const memeCaption = document.getElementById('meme-caption');
+        const nextMemeBtn = document.getElementById('next-meme');
+        const memeCard = document.getElementById('meme-card');
+        const loadingSpinner = document.getElementById('loading-spinner');
+        const moodFilter = document.getElementById('mood-filter');
+        const randomMoodBtn = document.getElementById('random-mood');
+
+        let currentMoodMemes = [];
+
+        // Generate mood buttons
+        function renderMoodButtons(filter = '') {
+            moodButtonsDiv.innerHTML = '';
+            const filteredMoods = moods.filter(mood => 
+                mood.name.toLowerCase().includes(filter.toLowerCase())
+            );
+            filteredMoods.forEach(mood => {
+                const button = document.createElement('button');
+                button.className = 'mood-btn bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md';
+                button.textContent = mood.name;
+                button.addEventListener('click', () => {
+                    showMeme(mood);
+                    playSound();
+                });
+                moodButtonsDiv.appendChild(button);
+            });
+        }
+
+        renderMoodButtons();
+
+        // Mood filter input
+        moodFilter.addEventListener('input', () => {
+            renderMoodButtons(moodFilter.value);
+        });
+
+        // Random mood button
+        randomMoodBtn.addEventListener('click', () => {
+            const randomMood = moods[Math.floor(Math.random() * moods.length)];
+            showMeme(randomMood);
+            playSound();
+        });
+
+        function showMeme(mood) {
+            currentMoodMemes = mood.memes;
+            selectedMood.textContent = `Mood: ${mood.name}`;
+            memeDisplay.classList.remove('hidden');
+            memeCard.classList.add('hidden');
+            loadingSpinner.classList.remove('hidden');
+            
+            // Simulate loading delay
+            setTimeout(() => {
+                displayRandomMeme();
+                loadingSpinner.classList.add('hidden');
+                memeCard.classList.remove('hidden');
+                memeCard.classList.add('show');
+                triggerConfetti();
+            }, 1000);
+        }
+
+        function displayRandomMeme() {
+            if (currentMoodMemes.length > 0) {
+                const randomMeme = currentMoodMemes[Math.floor(Math.random() * currentMoodMemes.length)];
+                memeImage.src = randomMeme.url;
+                memeCaption.textContent = randomMeme.caption;
+            }
+        }
+
+        function triggerConfetti() {
+            confetti({
+                particleCount: 120,
+                spread: 80,
+                origin: { y: 0.6 },
+                colors: ['#f472b6', '#facc15', '#a78bfa', '#4ade80']
+            });
+        }
+
+        function playSound() {
+            const audio = new Audio('https://www.soundjay.com/buttons/beep-01a.mp3');
+            audio.play().catch(() => console.log('Sound play failed'));
+        }
+
+        nextMemeBtn.addEventListener('click', () => {
+            memeCard.classList.add('hidden');
+            memeCard.classList.remove('show');
+            loadingSpinner.classList.remove('hidden');
+            setTimeout(() => {
+                displayRandomMeme();
+                loadingSpinner.classList.add('hidden');
+                memeCard.classList.remove('hidden');
+                memeCard.classList.add('show');
+                triggerConfetti();
+                playSound();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
