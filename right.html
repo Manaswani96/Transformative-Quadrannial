@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Image with Animation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image Outside Box</title>
   <style>
     body {
       display: flex;
@@ -13,44 +13,27 @@
       margin: 0;
       background-image: url('https://imgv3.fotor.com/images/share/Free-pink-gradient-aesthetic-background-from-Fotor.jpg');
       background-size: cover;
-      animation: fadeIn 1.5s ease-in;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
     }
 
     .box-container {
       display: flex;
       justify-content: flex-start;
       align-items: center;
-      background: linear-gradient(45deg, #FFB6C1, #d258f1);
+      background: linear-gradient(45deg,#FFB6C1,#d258f1 );
       padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      width: 80%;
-      height: 400px;
+      border-radius: 15px; 
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 80%; 
+      height: 400px; 
       position: relative;
       overflow: hidden;
-      animation: slideIn 1s ease-in-out;
-    }
-
-    @keyframes slideIn {
-      from { transform: scale(0.9); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
     }
 
     img {
-      border-radius: 15px;
-      height: 300px;
-      width: 300px;
+      border-radius: 15px; 
+      height: 300px; 
+      width: 300px; 
       object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-
-    img:hover {
-      transform: scale(1.05);
     }
 
     .text {
@@ -58,12 +41,25 @@
       font-family: Arial, sans-serif;
       color: #16080a;
       margin-left: 20px;
-      animation: fadeInText 1.2s ease-in-out;
+      max-width: 600px;
     }
 
-    @keyframes fadeInText {
-      from { opacity: 0; transform: translateX(30px); }
-      to { opacity: 1; transform: translateX(0); }
+    .text button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 25px;
+      background: #fff;
+      color: #d258f1;
+      cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .text button:hover {
+      background: #d258f1;
+      color: #fff;
     }
   </style>
 </head>
@@ -78,10 +74,10 @@
         <i>
           <strong>Success Isn't About the Best University:</strong> Many successful entrepreneurs came from respected but not globally famous institutions. Success relies more on dedication and vision than the prestige of your alma mater.<br><br>
           <strong>Real-World Experience Over Degrees:</strong> Practical experience, building skills, and solving market problems often lead to success more than relying solely on degrees.<br><br>
-          <strong>Passion Drives Innovation:</strong> Hard work, innovation, and risk-taking are often more important than formal education. Passionate students can turn ideas into successful businesses, regardless of where they studied.<br><br>
-          <strong>Persistence Leads to Success:</strong> Overcoming challenges through persistence is key. These entrepreneurs prove that resilience is often the difference between failure and greatness.
+          <strong>Passion Drives Innovation:</strong> Hard work, innovation, and risk-taking are often more important than formal education.<br><br>
         </i>
       </p>
+      <button><a href="diaries.html" target="_blank" class="visit-button">VISIT YOUNG SENSATION</a></button>
     </div>
   </div>
 
